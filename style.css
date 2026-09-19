@@ -1,0 +1,1743 @@
+
+/* ============================================================
+   RESET
+============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    font-family: "Georgia", serif;
+    background:
+        radial-gradient(
+            circle at center,
+            #302044 0%,
+            #160d25 45%,
+            #080510 100%
+        );
+    color: #fff;
+}
+
+
+/* ============================================================
+   PARTÍCULAS
+============================================================ */
+
+#particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 50%;
+    animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+
+    0% {
+        transform: translateY(110vh) scale(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+    }
+}
+
+
+/* ============================================================
+   ESCENAS
+============================================================ */
+
+.scene {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: scale(1.04);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease,
+        visibility 1s ease;
+
+    z-index: 2;
+}
+
+.scene.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+
+/* ============================================================
+   CONTENIDO
+============================================================ */
+
+.scene-content {
+    width: min(900px, 100%);
+    text-align: center;
+    position: relative;
+    z-index: 5;
+}
+
+.small-text {
+    font-size: 0.95rem;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 25px;
+    animation: fadeUp 1.2s ease both;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 1.08;
+    font-weight: 400;
+}
+
+h1 span,
+h2 span {
+    display: block;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #f7bfd7,
+            #fff
+        );
+
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation: gradientMove 5s linear infinite;
+}
+
+@keyframes gradientMove {
+
+    to {
+        background-position: 200% center;
+    }
+}
+
+.intro-description {
+    margin-top: 25px;
+
+    font-size: 1.1rem;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    animation: fadeUp 1.5s ease both;
+}
+
+
+/* ============================================================
+   BOTONES
+============================================================ */
+
+.main-button {
+    margin-top: 35px;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.15),
+            rgba(255, 255, 255, 0.05)
+        );
+
+    color: white;
+
+    padding: 14px 28px;
+
+    border-radius: 999px;
+
+    font-family: inherit;
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.main-button:hover {
+    transform: translateY(-4px) scale(1.03);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.25),
+            rgba(255, 255, 255, 0.1)
+        );
+
+    box-shadow:
+        0 10px 40px rgba(255, 180, 220, 0.2);
+}
+
+.hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+
+/* ============================================================
+   BOTÓN MÚSICA
+============================================================ */
+
+.music-button {
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    cursor: pointer;
+
+    z-index: 100;
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.3s ease;
+}
+
+.music-button:hover {
+    transform: scale(1.1);
+}
+
+
+/* ============================================================
+   SOBRE
+============================================================ */
+
+.envelope-scene {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.envelope {
+    position: relative;
+
+    width: 330px;
+    height: 220px;
+
+    margin-top: 20px;
+
+    perspective: 1000px;
+}
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #c56a91,
+            #8d4567
+        );
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.45);
+}
+
+.envelope-front {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 62%;
+
+    background: #a95278;
+
+    clip-path: polygon(
+        0 0,
+        50% 70%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    z-index: 5;
+}
+
+.envelope-flap {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 62%;
+
+    background: #d783a5;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 78%
+    );
+
+    transform-origin: top;
+
+    transition:
+        transform 1.2s ease;
+
+    z-index: 7;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.letter-inside {
+    position: absolute;
+
+    left: 8%;
+    top: 10%;
+
+    width: 84%;
+    height: 80%;
+
+    z-index: 3;
+
+    transition:
+        transform 1.4s ease;
+}
+
+.envelope.open .letter-inside {
+    transform:
+        translateY(-105px)
+        scale(1.04);
+}
+
+.mini-paper {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    background: #fffdf7;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.mini-paper-lines,
+.message-paper-lines,
+.lined-paper::before {
+    position: absolute;
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 29px,
+            rgba(120, 150, 190, 0.25) 30px
+        );
+
+    pointer-events: none;
+}
+
+.mini-paper-margin,
+.message-paper-margin {
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    left: 55px;
+
+    width: 1px;
+
+    background: rgba(220, 100, 120, 0.35);
+}
+
+.mini-paper-content {
+    position: relative;
+
+    z-index: 2;
+
+    padding: 45px 20px 20px 75px;
+
+    color: #d46a91;
+
+    font-size: 2rem;
+}
+
+
+/* ============================================================
+   ESCENA 3 — CARTA
+============================================================ */
+
+.message-paper-scene {
+    width: min(850px, 100%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message-paper {
+    position: relative;
+
+    width: min(760px, 100%);
+    min-height: 440px;
+
+    padding: 65px 65px 55px 95px;
+
+    background: #fffdf7;
+
+    color: #40363b;
+
+    box-shadow:
+        0 35px 80px rgba(0, 0, 0, 0.4);
+
+    transform: rotate(-1deg);
+
+    animation: messagePaperEnter 1.2s ease both;
+
+    overflow: hidden;
+}
+
+@keyframes messagePaperEnter {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(80px)
+            rotate(-5deg)
+            scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            rotate(-1deg)
+            scale(1);
+    }
+}
+
+.message-paper-content {
+    position: relative;
+    z-index: 2;
+}
+
+.paper-small-text {
+    color: #a66c82;
+
+    margin-bottom: 10px;
+}
+
+.message-paper-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+
+    font-weight: 400;
+
+    color: #59434b;
+
+    margin-bottom: 30px;
+}
+
+.typing-text {
+    min-height: 150px;
+
+    font-family:
+        "Segoe Print",
+        "Bradley Hand",
+        "Comic Sans MS",
+        cursive;
+
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+
+    line-height: 2;
+
+    text-align: left;
+
+    color: #51474b;
+}
+
+.typing-text::after {
+    content: "|";
+
+    animation:
+        blink 0.8s infinite;
+}
+
+@keyframes blink {
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.paper-heart {
+    margin-top: 20px;
+
+    font-size: 2rem;
+
+    color: #c7688b;
+
+    animation: heartPulse 1.5s infinite;
+}
+
+@keyframes heartPulse {
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+
+/* ============================================================
+   FOTO
+============================================================ */
+
+.memory-scene {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.memory-scene h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+
+    font-weight: 400;
+
+    line-height: 1.15;
+
+    margin-bottom: 25px;
+}
+
+.photo-frame {
+    position: relative;
+
+    width: min(420px, 85vw);
+
+    padding: 15px 15px 55px;
+
+    background: #fffdf8;
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.4);
+
+    transform: rotate(-2deg);
+
+    animation: photoFloat 4s ease-in-out infinite;
+}
+
+@keyframes photoFloat {
+
+    0%,
+    100% {
+        transform:
+            rotate(-2deg)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            rotate(1deg)
+            translateY(-12px);
+    }
+}
+
+.memory-photo {
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    object-fit: cover;
+
+    background: #eee;
+}
+
+.photo-caption {
+    position: absolute;
+
+    bottom: 15px;
+    left: 0;
+    right: 0;
+
+    text-align: center;
+
+    color: #6e5960;
+
+    font-family:
+        "Segoe Print",
+        "Bradley Hand",
+        cursive;
+
+    font-size: 1rem;
+}
+
+.photo-tape {
+    position: absolute;
+
+    width: 90px;
+    height: 25px;
+
+    top: -13px;
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        rotate(-3deg);
+
+    background: rgba(255, 222, 180, 0.65);
+
+    z-index: 5;
+}
+
+
+/* ============================================================
+   ESCENA 5 — CARTA GRANDE
+============================================================ */
+
+.large-letter-scene {
+    width: min(900px, 100%);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.lined-paper {
+    position: relative;
+
+    width: min(850px, 100%);
+
+    min-height: 570px;
+
+    padding:
+        50px
+        65px
+        60px
+        95px;
+
+    background: #fffdf7;
+
+    color: #4c4247;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.45);
+
+    transform: rotate(0.5deg);
+
+    overflow: hidden;
+
+    animation: paperEnter 1.2s ease both;
+}
+
+@keyframes paperEnter {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(80px)
+            rotate(4deg)
+            scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            rotate(0.5deg)
+            scale(1);
+    }
+}
+
+.paper-top {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    color: #a96780;
+
+    letter-spacing: 3px;
+
+    font-size: 0.9rem;
+
+    margin-bottom: 12px;
+}
+
+.paper-title {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    color: #55464c;
+
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+
+    font-weight: 400;
+}
+
+.paper-divider {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    margin: 12px 0 25px;
+
+    color: #bd718d;
+
+}
+
+.handwritten-text {
+    position: relative;
+
+    z-index: 2;
+
+    font-family:
+        "Segoe Print",
+        "Bradley Hand",
+        "Comic Sans MS",
+        cursive;
+
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
+
+    line-height: 1.9;
+
+    text-align: left;
+
+    min-height: 280px;
+}
+
+.handwritten-text p {
+    margin-bottom: 18px;
+}
+
+.paper-signature {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: right;
+
+    font-size: 2rem;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.paper-signature.show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.paper-corner {
+    position: absolute;
+
+    bottom: 20px;
+    right: 25px;
+
+    font-size: 2rem;
+
+    color: #bd718d;
+
+    z-index: 2;
+}
+
+
+/* ============================================================
+   ESCENA FINAL
+============================================================ */
+
+.final-scene {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.final-stars {
+    font-size: 1.5rem;
+
+    letter-spacing: 15px;
+
+    margin-bottom: 20px;
+
+    animation:
+        starsPulse 2s infinite;
+}
+
+@keyframes starsPulse {
+
+    50% {
+        transform: scale(1.1);
+
+        opacity: 0.7;
+    }
+}
+
+
+/* ============================================================
+   PASTEL
+============================================================ */
+
+.cake {
+    position: relative;
+
+    width: 260px;
+
+    height: 230px;
+
+    margin-bottom: 25px;
+
+    animation: cakeFloat 3s ease-in-out infinite;
+}
+
+@keyframes cakeFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+.cake-top {
+    position: absolute;
+
+    bottom: 120px;
+    left: 15px;
+
+    width: 230px;
+    height: 65px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #f0b1c9,
+            #c96d94
+        );
+
+    z-index: 3;
+}
+
+.cake-body {
+    position: absolute;
+
+    bottom: 45px;
+    left: 15px;
+
+    width: 230px;
+    height: 100px;
+
+    background:
+        linear-gradient(
+            to right,
+            #9d4e72,
+            #d47d9e,
+            #9d4e72
+        );
+
+    border-radius:
+        0 0 18px 18px;
+}
+
+.cake-bottom {
+    position: absolute;
+
+    bottom: 25px;
+    left: 0;
+
+    width: 260px;
+    height: 35px;
+
+    border-radius: 50%;
+
+    background: #6f3b54;
+}
+
+.cake-decoration {
+    position: relative;
+
+    display: inline-block;
+
+    width: 13px;
+    height: 13px;
+
+    margin: 25px 13px;
+
+    border-radius: 50%;
+
+    background: #fff0f5;
+}
+
+.candle {
+    position: absolute;
+
+    z-index: 6;
+
+    left: 50%;
+    bottom: 175px;
+
+    transform: translateX(-50%);
+
+    width: 18px;
+    height: 70px;
+
+    border-radius: 5px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #f8c1d4,
+            #f8c1d4 8px,
+            #fff 8px,
+            #fff 16px
+        );
+}
+
+.flame {
+    position: absolute;
+
+    left: 50%;
+
+    top: -32px;
+
+    width: 24px;
+    height: 34px;
+
+    transform:
+        translateX(-50%)
+        rotate(45deg);
+
+    background: #ffd36b;
+
+    border-radius:
+        50% 0 50% 50%;
+
+    animation: flame 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes flame {
+
+    from {
+        transform:
+            translateX(-50%)
+            rotate(40deg)
+            scale(0.9);
+    }
+
+    to {
+        transform:
+            translateX(-50%)
+            rotate(50deg)
+            scale(1.1);
+    }
+}
+
+.final-scene h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+.final-message {
+    max-width: 650px;
+
+    margin-top: 20px;
+
+    font-size: 1.15rem;
+
+    line-height: 1.8;
+
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.final-hearts {
+    margin-top: 20px;
+
+    font-size: 1.5rem;
+}
+
+
+/* ============================================================
+   CONFETI
+============================================================ */
+
+#confetti {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 50;
+}
+
+.confetti-piece {
+    position: absolute;
+
+    width: 8px;
+    height: 14px;
+
+    top: -30px;
+
+    animation:
+        confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+
+/* ============================================================
+   ANIMACIONES GENERALES
+============================================================ */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE — CELULARES
+============================================================ */
+
+@media (max-width: 600px) {
+
+    .scene {
+        padding: 18px;
+    }
+
+    .small-text {
+        font-size: 0.75rem;
+
+        letter-spacing: 2px;
+    }
+
+    .main-button {
+        padding: 13px 22px;
+
+        font-size: 0.9rem;
+    }
+
+    .envelope {
+        width: 290px;
+        height: 195px;
+    }
+
+    .envelope.open .letter-inside {
+        transform:
+            translateY(-85px)
+            scale(1.02);
+    }
+
+    .message-paper {
+        min-height: 430px;
+
+        padding:
+            45px
+            30px
+            40px
+            65px;
+    }
+
+    .message-paper-margin {
+        left: 42px;
+    }
+
+    .typing-text {
+        font-size: 1rem;
+
+        line-height: 1.8;
+    }
+
+    .photo-frame {
+        width: min(340px, 85vw);
+    }
+
+    .lined-paper {
+        min-height: 500px;
+
+        padding:
+            35px
+            30px
+            45px
+            55px;
+    }
+
+    .handwritten-text {
+        font-size: 0.95rem;
+
+        line-height: 1.75;
+    }
+
+    .cake {
+        transform: scale(0.8);
+        margin-top: -15px;
+        margin-bottom: 0;
+    }
+
+    .final-message {
+        font-size: 0.95rem;
+
+        line-height: 1.6;
+    }
+
+    .music-button {
+        top: 12px;
+        right: 12px;
+
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+/* ============================================================
+   PANTALLAS BAJAS
+============================================================ */
+
+@media (max-height: 700px) {
+
+    .scene {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .message-paper {
+        min-height: 380px;
+    }
+
+    .lined-paper {
+        min-height: 450px;
+    }
+
+    .photo-frame {
+        width: 300px;
+    }
+
+    .cake {
+        transform: scale(0.7);
+        margin-top: -35px;
+        margin-bottom: -25px;
+    }
+}
+
+/* ============================================================
+   🕷️ TEMÁTICA SPIDER-VERSE
+   Miles Morales + Gwen Stacy
+   AGREGAR AL FINAL DE style.css
+============================================================ */
+
+
+/* ------------------------------------------------------------
+   FONDO PRINCIPAL — CIUDAD NOCTURNA
+------------------------------------------------------------ */
+
+body {
+    background:
+        radial-gradient(
+            ellipse at 50% 20%,
+            rgba(92, 30, 100, 0.45),
+            transparent 45%
+        ),
+        radial-gradient(
+            ellipse at 15% 80%,
+            rgba(180, 20, 55, 0.22),
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 85% 70%,
+            rgba(30, 70, 130, 0.22),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #050509 0%,
+            #0b0813 45%,
+            #09050c 100%
+        );
+
+    position: relative;
+}
+
+
+/* ------------------------------------------------------------
+   LUCES DE LA CIUDAD
+------------------------------------------------------------ */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    background:
+        radial-gradient(
+            circle at 12% 35%,
+            rgba(255, 30, 75, 0.12) 0,
+            transparent 4%
+        ),
+        radial-gradient(
+            circle at 87% 25%,
+            rgba(255, 70, 170, 0.10) 0,
+            transparent 5%
+        ),
+        radial-gradient(
+            circle at 75% 80%,
+            rgba(40, 120, 255, 0.10) 0,
+            transparent 5%
+        );
+
+    animation: cityLights 5s ease-in-out infinite alternate;
+}
+
+@keyframes cityLights {
+
+    from {
+        opacity: 0.55;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* ------------------------------------------------------------
+   SILUETA DE CIUDAD
+------------------------------------------------------------ */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 17vh;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    opacity: 0.55;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.85),
+            transparent
+        );
+
+    clip-path: polygon(
+        0 100%,
+        0 55%,
+        4% 55%,
+        4% 40%,
+        9% 40%,
+        9% 68%,
+        14% 68%,
+        14% 30%,
+        19% 30%,
+        19% 60%,
+        25% 60%,
+        25% 45%,
+        30% 45%,
+        30% 70%,
+        36% 70%,
+        36% 25%,
+        41% 25%,
+        41% 58%,
+        48% 58%,
+        48% 38%,
+        54% 38%,
+        54% 65%,
+        61% 65%,
+        61% 20%,
+        66% 20%,
+        66% 55%,
+        72% 55%,
+        72% 35%,
+        78% 35%,
+        78% 70%,
+        84% 70%,
+        84% 28%,
+        90% 28%,
+        90% 55%,
+        96% 55%,
+        96% 42%,
+        100% 42%,
+        100% 100%
+    );
+}
+
+
+/* ------------------------------------------------------------
+   TELARAÑAS EN LAS ESQUINAS
+------------------------------------------------------------ */
+
+.scene::before,
+.scene::after {
+    content: "";
+
+    position: absolute;
+
+    width: 190px;
+    height: 190px;
+
+    pointer-events: none;
+
+    opacity: 0.16;
+
+    z-index: 1;
+
+    background:
+        repeating-radial-gradient(
+            circle at 0 0,
+            transparent 0,
+            transparent 23px,
+            rgba(255, 255, 255, 0.45) 24px,
+            transparent 25px
+        );
+
+    animation: webPulse 5s ease-in-out infinite;
+}
+
+.scene::before {
+    top: -35px;
+    left: -35px;
+
+    transform: rotate(0deg);
+}
+
+.scene::after {
+    right: -35px;
+    bottom: -35px;
+
+    transform: rotate(180deg);
+}
+
+@keyframes webPulse {
+
+    0%,
+    100% {
+        opacity: 0.10;
+    }
+
+    50% {
+        opacity: 0.22;
+    }
+}
+
+
+/* ------------------------------------------------------------
+   EFECTO ROJO MILES
+------------------------------------------------------------ */
+
+.scene:nth-child(odd)::before {
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 35px rgba(255, 20, 70, 0.08);
+}
+
+
+/* ------------------------------------------------------------
+   PARTÍCULAS MÁS SPIDER-VERSE
+------------------------------------------------------------ */
+
+.particle {
+    width: 3px;
+    height: 3px;
+
+    background: rgba(255, 220, 240, 0.8);
+
+    box-shadow:
+        0 0 7px rgba(255, 80, 150, 0.45);
+
+    animation:
+        particleFloat 9s linear infinite,
+        spiderParticleGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes spiderParticleGlow {
+
+    from {
+        opacity: 0.25;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+}
+
+
+/* ------------------------------------------------------------
+   PEQUEÑO EFECTO CÓMIC
+------------------------------------------------------------ */
+
+.scene.active {
+    animation: spiderSceneIn 1s ease both;
+}
+
+@keyframes spiderSceneIn {
+
+    0% {
+        filter: brightness(0.7);
+    }
+
+    100% {
+        filter: brightness(1);
+    }
+}
+
+
+/* ------------------------------------------------------------
+   COLORES TIPO MILES + GWEN
+------------------------------------------------------------ */
+
+h1 span,
+h2 span {
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #ff477e 25%,
+            #d879ff 50%,
+            #7eb6ff 75%,
+            #ffffff 100%
+        );
+
+    background-size: 300% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        spiderGradient 6s linear infinite;
+}
+
+@keyframes spiderGradient {
+
+    to {
+        background-position: 300% center;
+    }
+}
+
+
+/* ------------------------------------------------------------
+   BOTONES — NEÓN SPIDER-VERSE
+------------------------------------------------------------ */
+
+.main-button {
+    border-color:
+        rgba(255, 90, 145, 0.45);
+
+    box-shadow:
+        0 0 0 rgba(255, 30, 80, 0);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease,
+        background 0.4s ease;
+}
+
+.main-button:hover {
+
+    border-color:
+        rgba(255, 80, 140, 0.9);
+
+    box-shadow:
+        0 0 20px rgba(255, 30, 90, 0.25),
+        0 0 45px rgba(170, 40, 150, 0.12);
+}
+
+
+/* ------------------------------------------------------------
+   SOBRE — PEQUEÑO DETALLE ARÁCNIDO
+------------------------------------------------------------ */
+
+.envelope {
+    filter:
+        drop-shadow(
+            0 0 18px rgba(255, 30, 80, 0.12)
+        );
+}
+
+.envelope-flap {
+    background:
+        linear-gradient(
+            135deg,
+            #db789c,
+            #9d3f6d
+        );
+}
+
+
+/* ------------------------------------------------------------
+   CARTAS — CONTRASTE CON EL FONDO
+------------------------------------------------------------ */
+
+.message-paper,
+.lined-paper {
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        0 0 35px rgba(255, 70, 130, 0.07);
+}
+
+
+/* ------------------------------------------------------------
+   FOTO — ESTILO FOTOGRAFÍA DEL SPIDER-VERSE
+------------------------------------------------------------ */
+
+.photo-frame {
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.55),
+        0 0 30px rgba(255, 60, 130, 0.10);
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+.photo-frame:hover {
+
+    box-shadow:
+        0 35px 80px rgba(0, 0, 0, 0.65),
+        0 0 45px rgba(255, 60, 140, 0.18);
+}
+
+
+/* ------------------------------------------------------------
+   ESCENA FINAL — MÁS MILES + GWEN
+------------------------------------------------------------ */
+
+#scene6 {
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(220, 30, 80, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 25% 70%,
+            rgba(80, 100, 255, 0.10),
+            transparent 30%
+        ),
+        transparent;
+}
+
+
+/* ------------------------------------------------------------
+   BOTÓN DE MÚSICA
+------------------------------------------------------------ */
+
+.music-button {
+
+    border-color:
+        rgba(255, 80, 140, 0.35);
+
+    box-shadow:
+        0 0 15px rgba(255, 40, 100, 0.08);
+}
+
+.music-button:hover {
+
+    border-color:
+        rgba(255, 100, 160, 0.7);
+
+    box-shadow:
+        0 0 25px rgba(255, 40, 100, 0.18);
+}
+
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+------------------------------------------------------------ */
+
+@media (max-width: 600px) {
+
+    .scene::before,
+    .scene::after {
+
+        width: 120px;
+        height: 120px;
+
+        opacity: 0.12;
+    }
+
+    body::after {
+        height: 12vh;
+    }
+}
+
+/* ============================================================
+   🕸️ EXTRA SPIDER-VERSE — halftone, glitch, drip, canvas
+============================================================ */
+
+#halftone {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px);
+    background-size: 6px 6px;
+}
+
+#webCanvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.35;
+}
+
+.spider-drip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(217, 44, 110, 0.55), transparent);
+    clip-path: polygon(
+        0% 0%, 100% 0%, 100% 40%, 96% 55%, 92% 40%, 88% 70%, 84% 45%,
+        80% 60%, 76% 40%, 72% 80%, 68% 45%, 64% 55%, 60% 40%, 56% 65%,
+        52% 40%, 48% 75%, 44% 45%, 40% 60%, 36% 40%, 32% 70%, 28% 45%,
+        24% 55%, 20% 40%, 16% 65%, 12% 40%, 8% 75%, 4% 45%, 0% 40%
+    );
+}
+
+@keyframes glitchShift {
+    0%, 100% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+    92% { text-shadow: -2px 0 #ff2b6d, 2px 0 #35c1ff; }
+    94% { text-shadow: 2px 0 #ff2b6d, -2px 0 #35c1ff; }
+    96% { text-shadow: -1px 0 #ff2b6d, 1px 0 #35c1ff; }
+    98% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+}
+
+h1, h2 {
+    animation: glitchShift 6s infinite;
+}
+
+@media (max-width: 600px) {
+    .spider-drip { height: 26px; }
+}

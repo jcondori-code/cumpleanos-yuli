@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una sorpresa para ti ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         MÚSICA
+    ====================================================== -->
+
+    <audio id="birthdayMusic" loop preload="auto">
+        <source src="audio/musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- BOTÓN DE MÚSICA -->
+    <button id="musicButton" class="music-button" aria-label="Controlar música">
+        🔊
+    </button>
+
+
+    <!-- =====================================================
+         PARTÍCULAS
+    ====================================================== -->
+
+    <div id="particles"></div>
+    <canvas id="webCanvas"></canvas>
+<div id="halftone"></div>
+<div class="spider-drip"></div>
+
+
+    <!-- =====================================================
+         ESCENA 1
+    ====================================================== -->
+
+    <section id="scene1" class="scene active">
+
+        <div class="scene-content intro-content">
+
+            <div class="small-text">
+                ✨ Quiero compartir algo contigo✨
+            </div>
+
+            <h1>
+                Hay instantes que merecen dedicarse a una sola persona en el mundo
+                <span>Esa persona eres tú.</span>
+            </h1>
+
+            <p class="intro-description">
+                Y este es uno de ellos...
+            </p>
+
+            <button id="startButton" class="main-button">
+                Entrar a la sorpresa ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ESCENA 2 — SOBRE
+    ====================================================== -->
+
+    <section id="scene2" class="scene">
+
+        <div class="scene-content envelope-scene">
+
+            <div class="small-text">
+                💌 Para ti
+            </div>
+
+            <div id="envelope" class="envelope">
+
+                <div class="envelope-back"></div>
+
+                <div class="letter-inside">
+
+                    <div class="mini-paper">
+
+                        <div class="mini-paper-lines"></div>
+                        <div class="mini-paper-margin"></div>
+
+                        <div class="mini-paper-content">
+                            ♡
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="envelope-front"></div>
+
+                <div class="envelope-flap"></div>
+
+            </div>
+
+            <button id="openEnvelope" class="main-button">
+                Abrir 💌
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ESCENA 3 — CARTA
+    ====================================================== -->
+
+    <section id="scene3" class="scene">
+
+        <div class="message-paper-scene">
+
+            <div class="message-paper">
+
+                <div class="message-paper-lines"></div>
+
+                <div class="message-paper-margin"></div>
+
+                <div class="message-paper-content">
+
+                    <div class="small-text paper-small-text">
+                        ✨ Att. Jamil ✨
+                    </div>
+
+                    <h2 class="message-paper-title">
+                        Queria recordarte algo importante...
+                    </h2>
+
+                    <div
+                        id="typingText"
+                        class="typing-text">
+                    </div>
+
+                    <div class="paper-heart">
+                        ♡
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button
+                id="continueButton"
+                class="main-button hidden">
+                Continuar ✨
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ESCENA 4 — FOTO
+    ====================================================== -->
+
+    <section id="scene4" class="scene">
+
+        <div class="scene-content memory-scene">
+
+            <div class="small-text">
+                📸 Un recuerdo para guardar
+            </div>
+
+            <h2>
+                Si la ternura tuviera nombre, se llamaría Yulissa
+                <span>Y si tuviera esa sonrisa, sería la tuya.</span>
+            </h2>
+
+            <div class="photo-frame">
+
+                <div class="photo-tape"></div>
+
+                <img
+                    src="images/foto.jpg"
+                    alt="Nuestro recuerdo"
+                    class="memory-photo">
+
+                <div class="photo-caption">
+                    ❤️ Un momento especial ❤️
+                </div>
+
+            </div>
+
+            <button id="letterButton" class="main-button">
+                Hay algo más... 💌
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ESCENA 5 — CARTA GRANDE
+    ====================================================== -->
+
+    <section id="scene5" class="scene">
+
+        <div class="large-letter-scene">
+
+            <div class="lined-paper">
+
+                <div class="paper-top">
+                    ♡ Para ti ♡
+                </div>
+
+                <h2 class="paper-title">
+                    Una cosa que quiero decirte...
+                </h2>
+
+                <div class="paper-divider">
+                    ✦
+                </div>
+
+                <div
+                    id="handwrittenText"
+                    class="handwritten-text">
+                </div>
+
+                <div
+                    id="paperSignature"
+                    class="paper-signature">
+                    ❤️
+                </div>
+
+                <div class="paper-corner">
+                    ♡
+                </div>
+
+            </div>
+
+            <button id="finalButton" class="main-button">
+                Una última sorpresa 🎁
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ESCENA 6 — FINAL
+    ====================================================== -->
+
+    <section id="scene6" class="scene">
+
+        <div class="scene-content final-scene">
+
+            <div class="final-stars">
+                ✨ ✨ ✨
+            </div>
+
+            <div class="cake">
+
+                <div class="candle">
+
+                    <div class="flame"></div>
+
+                </div>
+
+                <div class="cake-top">
+
+                    <div class="cake-decoration"></div>
+                    <div class="cake-decoration"></div>
+                    <div class="cake-decoration"></div>
+
+                </div>
+
+                <div class="cake-body"></div>
+
+                <div class="cake-bottom"></div>
+
+            </div>
+
+            <h1>
+                ¡Feliz Cumpleaños Yulissa!
+                <span>❤️</span>
+            </h1>
+
+            <p class="final-message">
+                Que este nuevo año de tu vida esté lleno
+                de momentos bonitos, sonrisas y sueños cumplidos.
+                Quisiera que la pases super bien en tu dia tan especial y recuerda que aqui hay una persona que te quiere.
+                Y que no te olvidaria jamassssss 
+                ATT. Jamil ;)
+            </p>
+
+            <div class="final-hearts">
+                ❤️　💖　❤️
+            </div>
+
+            <button id="restartButton" class="main-button">
+                Volver a empezar ✨
+            </button>
+
+        </div>
+
+        <div id="confetti"></div>
+
+    </section>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
